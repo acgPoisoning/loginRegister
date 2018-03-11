@@ -2,7 +2,7 @@
   <div id="app">
     <header class="user-wrapper">
       <i class="icon-user out-of-flow"></i>
-      <router-link to="/home" class="wholeLine">用户中心</router-link>
+      <router-link to="/home/user" class="wholeLine">用户中心</router-link>
     </header>
     <div class="tab">
       <div class="tab-item">
@@ -46,6 +46,7 @@
     .user-wrapper
       box-sizing border-box
       width 100%
+      min-width 300px
       height 100px
       padding 0 30px
       margin 60px 0 30px 0
@@ -83,6 +84,6 @@
           transition: all 0.3s ease-out;
           &.active
             font-weight bold
-            activeLink()
+            normalBtn()
             border1px(mainColor)
 </style>

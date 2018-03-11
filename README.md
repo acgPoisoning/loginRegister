@@ -1,5 +1,5 @@
 
-# user-center
+# 用户中心
 
 > A Vue.js project
 
@@ -18,7 +18,7 @@
 
 > npm install -g json-server
 
-- 在 `./mock` 文件夹地址下，启动 `json-server` 并告诉 `json-server` 监视data.json
+- 在 `data.json` 文件夹地址下，启动 `json-server` 并告诉 `json-server` 监视data.json
 
 > json-server --watch data.json
 

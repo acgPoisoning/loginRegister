@@ -5,18 +5,29 @@ warningColor = rgb(200, 10, 20)
 dashColor = rgb(150, 150, 150)
 fontColor = rgb(7, 17, 27)
 
-activeLink(fontColor = #fff, backgroundColor = mainColor)
+fslh(size = 16px, lineHeight = 24px)
+  font-size size
+  line-height lineHeight
+
+normalBtn(fontColor = #fff, backgroundColor = mainColor)
   color fontColor
   background-color backgroundColor
 
-fontSizeHight(size = 16px, lineHeight = 24px)
-  font-size size
-  line-height lineHeight
+activeElement(fontColor = #fff, backgroundColor = mainColorDarker)
+  color fontColor
+  background-color backgroundColor
+
+hoverElement(fontColor = #fff, backgroundColor = mainColorSuperLighter)
+  color fontColor
+  background-color backgroundColor
 
 border1px(color = #ccc)
   border 1px solid color
 
-topCenter()
+bt1px(side = bottom, color = #ccc)
+  border-{side} 1px solid color
+
+yCenter()
   position relative
   top 50%
   -webkit-transform: translate(0, -50%);

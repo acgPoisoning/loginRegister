@@ -28,16 +28,28 @@ const routes = [{
   },
   children: [{
     path: 'user',
-    component: user
+    component: user,
+    meta: {
+      requireAuth: true
+    }
   }, {
     path: 'transfer',
-    component: transfer
+    component: transfer,
+    meta: {
+      requireAuth: true
+    }
   }, {
     path: 'charge',
-    component: charge
+    component: charge,
+    meta: {
+      requireAuth: true
+    }
   }, {
     path: 'bill',
-    component: bill
+    component: bill,
+    meta: {
+      requireAuth: true
+    }
   }]
 }];
 

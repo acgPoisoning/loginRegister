@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <section class="login">
     <ul class="content">
       <li>
         <i class="icon-user"></i>
@@ -23,7 +23,7 @@
       <p><span>测试手机号</span>13012345678</p>
       <p><span>测试密码</span>000000</p>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -36,23 +36,13 @@
         error: '',
         verify: '',
         givenCode: '',
-        VERIFY_YES: false
+        VERIFY_YES: true
       };
     },
     props: {
     },
     created() {
       this.verifyNumber();
-      // this.$http.get(`http://localhost:3000/users?username=test001&password=000000`).then((response) => {
-      //     if (response.body != null && response.body.length > 0) {
-      //       console.log(response.body); // 看看数据
-      //     } else {
-      //       this.error = '零数据';
-      //       throw this.error;
-      //     }
-      //   }).catch((error) => {
-      //     console.log('服务器错误', error);
-      //   });
     },
     methods: {
       confirmCode() {
@@ -71,11 +61,12 @@
         let PHONE_YES = this.isPhone(this.name);
         let keyName = PHONE_YES ? 'phone' : 'username';
         if (!this.VERIFY_YES) return;
-
+        // 此处个人开发环境，上线时需改成 $http.post方法传数据给后端......
         this.$http.get(`http://localhost:3000/users?${keyName}=${this.name}&password=${this.psw}`).then((response) => {
           // 这里在 isLogin方法中先判断一下后台返回的是否为空值，
           // 如果不是然后提交后台返回的值。
           // 注意这里是个难点，Vuex与 Vue-Resource结合使用。
+          console.log(response);
           if (response.body != null && response.body.length > 0) {
             console.log(response.body, '登录成功');
             this.$store.commit('isLogin', response.body[0]);
@@ -146,12 +137,12 @@
         .submit
           width 80%
           margin 0 10%
-          activeLink()
+          normalBtn()
           border-radius 10px
           outline none
           transition: all 0.2s ease-out;
           &:active
-            activeLink(,mainColorDarker)
+            activeElement()
           &:hover
             transform: scale(1.05);
 

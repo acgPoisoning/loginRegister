@@ -56,18 +56,18 @@
     display table
     .send-text-btn
       display table-cell
-      topCenter()
+      yCenter()
       padding 6px 6px
       width 70px
       height 40px
       line-height 20px
       font-size 14px
       vertical-align middle
-      activeLink()
+      normalBtn()
       border-radius 10px
       outline none
       cursor pointer
       transition: all 0.3s ease-out;
       &:active
-        activeLink(,mainColorDarker)
+        activeElement(,mainColorDarker)
 </style>

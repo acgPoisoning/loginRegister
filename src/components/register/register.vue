@@ -202,11 +202,11 @@
         height 40px
         margin 0 10%
         transition: all 0.2s ease-out;
-        activeLink()
+        normalBtn()
         border-radius 10px
         outline none
         &:active
-          activeLink(,mainColorDarker)
+          activeElement()
         &:hover
           transform: scale(1.05);
 </style>

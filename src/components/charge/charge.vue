@@ -1,5 +1,5 @@
 <template>
-  <div class="charge">这里是充值页面</div>
+  <section class="charge">这里是充值页面</section>
 </template>
 
 <script>

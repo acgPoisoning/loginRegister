@@ -1,5 +1,5 @@
 <template>
-  <div class="transfer">这里是转账页面</div>
+  <section class="transfer">这里是转账页面</section>
 </template>
 
 <script>

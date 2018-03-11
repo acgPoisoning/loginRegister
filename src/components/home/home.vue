@@ -15,7 +15,7 @@
       </div>
     </div>
     <transition name="fall-down">
-      <router-view class="fall-down"></router-view>
+      <router-view class="fall-down" :users="users"></router-view>
     </transition>
   </div>
 </template>
@@ -24,10 +24,11 @@
   export default {
     data() {
       return {
-        name: '',
-        pwd: '',
-        error: ''
+        users: {}
       };
+    },
+    created() {
+      this.getData();
     },
     computed: {
       user() {
@@ -36,6 +37,19 @@
       }
     },
     methods: {
+      getData() {
+      this.$http.get(`http://localhost:3000/users?username=test001&password=000000`).then((response) => {
+          if (response.body != null && response.body.length > 0) {
+            this.users = response.body[0];
+            // console.log('res', response.body[0], 'users', this.users); // 看看数据
+          } else {
+            this.error = '零数据';
+            throw this.error;
+          }
+        }).catch((error) => {
+          console.log('服务器错误', error);
+        });
+      }
     }
   };
 </script>
@@ -44,7 +58,10 @@
   @import "../../common/stylus/base.styl"
   .home-warpper
     width 100%
+    min-width 300px
+    overflow hidden
     .home-tab
+      z-index 10
       display flex
       width 100%
       height 40px
@@ -63,7 +80,7 @@
           transition: all 0.3s ease-out;
           &.active
             font-weight bold
-            activeLink()
+            normalBtn()
             border1px(mainColor)
 
     .fall-down
@@ -71,6 +88,6 @@
         position absolute
         transition all 0.3s cubic-bezier(0.2, 0.4, 0.35, 1)
       &.fall-down-enter, &.fall-down-leave-to
-        transform translateY(-100%)
+        transform translateX(-100%)
         opacity 0
 </style>
