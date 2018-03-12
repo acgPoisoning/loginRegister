@@ -1,21 +1,21 @@
 <template>
   <section class="user-center">
-    <ul class="content-wrapper">
+    <ul class="content">
       <li class="item clearfix">
-      <span class="title" @click="tellData">用户余额：</span>
-      <span class="balance">{{users.balance}}元</span>
+      <span class="title">用户余额：</span>
+      <span class="balance">{{account.balance}}元</span>
       </li>
       <li class="item clearfix">
         <span class="title">ID：</span>
-        <span class="id">{{users.id}}</span>
+        <span class="id">{{account.id}}</span>
       </li>
       <li class="item clearfix">
         <span class="title">用户名：</span>
-        <span class="username">{{users.username}}</span>
+        <span class="username">{{account.username}}</span>
       </li>
     </ul>
-    <button class="change-psw">修改密码</button>
-    <button class="change-psw">修改支付密码</button>
+    <button class="btn-style">修改密码</button>
+    <button class="btn-style">修改支付密码</button>
   </section>
 </template>
 
@@ -29,7 +29,7 @@
       };
     },
     props: {
-      users: {
+      account: {
         type: Object
       }
     },
@@ -40,9 +40,6 @@
       }
     },
     methods: {
-      tellData() {
-        console.log(this.users);
-      }
     }
   };
 </script>
@@ -52,7 +49,7 @@
   .user-center
     width 100%
     // background-color mainColorDarker
-    .content-wrapper
+    .content
       margin-bottom 20px
       .item
         width 100%
@@ -68,16 +65,8 @@
           font-size 16px
           line-height 40px
           text-align left
-
-    .change-psw
-      width 200px
-      margin 10px
-      fslh(16px, 40px)
-      cursor pointer
-      border-radius 10px
-      background-color #fff
-      outline none
-      &:hover
-        hoverElement(,mainColor)
+        .title
+          padding 0 20px 0 0
+          box-sizing border-box
 
 </style>

@@ -1,14 +1,14 @@
 <template>
-  <div class="register">
+  <div class="register" @click="test">
     <form class="content" @submit.prevent="doSubmit">
       <div class="form-item">
         <h3 class="item-name">用户名</h3>
-        <input type="text" class="text" v-model="inputText.count" placeholder="6~16位用户名，限数字、大小写字母">
+        <input type="text" class="text" v-model="inputText.username" placeholder="6~16位用户名，限数字、大小写字母">
         <!-- <p class="warning" v-show="">用户名不符合规则</p> -->
       </div>
       <div class="form-item">
         <h3 class="item-name">登陆密码</h3>
-        <input type="password" class="text" v-model="inputText.psw" placeholder="请输入6~16位密码" @blur="pswRules">
+        <input type="password" class="text" v-model="inputText.password" placeholder="请输入6~16位密码" @blur="pswRules">
         <p class="warning" v-show="!pswRules_OK">密码不符合规则</p>
       </div>
       <div class="form-item">
@@ -28,7 +28,7 @@
       </div>
       <div class="form-item">
         <h3 class="item-name">支付密码</h3>
-        <input type="password" class="text" v-model="inputText.payPsw" placeholder="请输入6~16位支付密码" @blur="pswRules">
+        <input type="password" class="text" v-model="inputText.payPassword" placeholder="请输入6~16位支付密码" @blur="pswRules">
         <p class="warning" v-show="!payPswRules_OK">密码不符合规则</p>
       </div>
       <div class="form-item">
@@ -54,11 +54,11 @@
       return {
         start: true,
         inputText: {
-          'count': '',
-          'psw': '',
+          'username': '',
+          'password': '',
+          'payPassword': '',
           'phone': '',
-          'phoneVerify': '',
-          'payPsw': ''
+          'phoneVerify': ''
         },
         RULES_OK: false, // 状态码
         countRules_OK: true,
@@ -70,37 +70,51 @@
       };
     },
     methods: {
+      test() {
+        // this.inputText.username = 'abcd123';
+        // this.inputText.password = 123456;
+        // this.inputText.pswRepeat = 123456;
+        // this.inputText.payPassword = 654321;
+        // this.inputText.payPswRepeat = 654321;
+        // this.inputText.phone = 13077778888;
+        // this.inputText.phoneVerify = 'NoMean';
+      },
       countRules() {
         // 校验账号规则
         let reg = /^[a-zA-Z0-9]{6,16}$/;
-        if (this.inputText.count !== '') {
-          this.countRules_OK = reg.test(this.inputText.count);
+        if (this.inputText.username !== '') {
+          this.countRules_OK = reg.test(this.inputText.username);
         }
       },
       pswRules() {
         // 校验密码规则
         let reg = /^[a-zA-Z0-9+-/=*]{6,16}$/;
-        if (this.inputText.psw !== '') {
-          this.pswRules_OK = reg.test(this.inputText.psw);
+        if (this.inputText.password !== '') {
+          this.pswRules_OK = reg.test(this.inputText.password);
         }
-        if (this.inputText.payPsw !== '') {
-        this.payPswRules_OK = reg.test(this.inputText.payPsw);
+        if (this.inputText.payPassword !== '') {
+          if (this.inputText.payPassword !== this.inputText.password) {
+            this.payPswRules_OK = reg.test(this.inputText.payPassword);
+          } else {
+            alert('支付密码不可与登录密码一样');
+            this.inputText.payPassword = '';
+          }
         }
       },
       pswRepeatDiff() {
         // 校验两次密码是否相同
-        if (this.inputText.pswRepeat !== '' && this.inputText.psw !== '') {
-          this.pswRepeatDiff_OK = (this.inputText.pswRepeat === this.inputText.psw);
+        if (this.inputText.pswRepeat !== '' && this.inputText.password !== '') {
+          this.pswRepeatDiff_OK = (this.inputText.pswRepeat === this.inputText.password);
         }
-        if (this.inputText.payPswRepeat !== '' && this.inputText.payPsw !== '') {
-          this.payPswRepeatDiff_OK = (this.inputText.payPswRepeat === this.inputText.payPsw);
+        if (this.inputText.payPswRepeat !== '' && this.inputText.payPassword !== '') {
+          this.payPswRepeatDiff_OK = (this.inputText.payPswRepeat === this.inputText.payPassword);
         }
       },
       isPhone() {
         // 校验是否为手机号
         let reg = /^1[34578]\d{9}$/;
         if (this.inputText.phone !== '') {
-          this.isPhone_OK = !reg.test(this.inputText.phone);
+          this.isPhone_OK = reg.test(this.inputText.phone);
         }
       },
       sendText() {
@@ -111,20 +125,32 @@
         this.start = false;
       },
       isEmpty(obj) {
+        // 只检测是否一个没填
         for (var key in obj) {
-          return false;
+          return true;
         }
-        return true;
+        return false;
       },
       doSubmit() {
         // 传回后端，后端再次校验，等结果，
         // 成功则跳转页面并完成登陆，不成功再重填注册信息
         let bEmpty = this.isEmpty(this.inputText);
+          // console.log(
+          //   this.inputText,
+          //   'countRules_OK', this.countRules_OK,
+          //   'pswRules_OK', this.pswRules_OK,
+          //   'pswRepeatDiff_OK', this.pswRepeatDiff_OK,
+          //   'isPhone_OK', this.isPhone_OK,
+          //   'payPswRules_OK', this.payPswRules_OK,
+          //   'payPswRepeatDiff_OK', this.payPswRepeatDiff_OK,
+          //   'bEmpty', bEmpty,
+          //   'RULES_OK', this.RULES_OK
+          // );
+
         this.RULES_OK = this.countRules_OK && this.pswRules_OK && this.pswRepeatDiff_OK && this.isPhone_OK && this.payPswRules_OK && this.payPswRepeatDiff_OK && bEmpty;
-        // console.log(this.RULES_OK);
         if (this.RULES_OK) {
-          // 按规则填写注册信息的
-          console.log(JSON.stringify(this.inputText));
+          // 填写注册信息符合规则
+          console.log('注册成功\n', JSON.stringify(this.inputText));
           /*
           let url = '';
           let formData = JSON.stringify(this.inputText); // 这里才是你的表单数据

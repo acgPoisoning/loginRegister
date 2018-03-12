@@ -15,7 +15,7 @@
       </div>
     </div>
     <transition name="fall-down">
-      <router-view class="fall-down" :users="users"></router-view>
+      <router-view class="fall-down" :account="account"></router-view>
     </transition>
   </div>
 </template>
@@ -24,7 +24,7 @@
   export default {
     data() {
       return {
-        users: {}
+        account: {}
       };
     },
     created() {
@@ -38,9 +38,9 @@
     },
     methods: {
       getData() {
-      this.$http.get(`http://localhost:3000/users?username=test001&password=000000`).then((response) => {
+      this.$http.get(`http://localhost:3000/account?username=test001&password=000000`).then((response) => {
           if (response.body != null && response.body.length > 0) {
-            this.users = response.body[0];
+            this.account = response.body[0];
             // console.log('res', response.body[0], 'users', this.users); // 看看数据
           } else {
             this.error = '零数据';

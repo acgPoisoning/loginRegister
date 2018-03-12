@@ -4,36 +4,47 @@
     "username": "test001",
     "phone": 13012345678,
     "password": "000000",
-    "balance": "123456.50",
-    "transactionRecord": [
-    {
-      "transactionId": 1000200030004000,
-      "time": 20180101093340,
-      "transactionAccount": "1111222233334444",
-      "amount": 1300
-    }, {
-      "transactionId": 1000200030004001,
-      "time": 20180211193340,
-      "transactionAccount": "2222333344445555",
-      "amount": -800
-    }, {
-      "transactionId": 1000200030004001,
-      "time": 20180226233340,
-      "transactionAccount": "3333444455556666",
-      "amount": 100
-    }]
+    "payPassword": "100000"
   }, {
     "id": 1000002,
     "username": "test002",
     "phone": 18712345678,
     "password": "123456",
-    "balance": "654321.80",
-    "transactionRecord": [
+    "payPassword": "200000"
+  }],
+  "account": [
+  {
+    "id": 1000001,
+    "username": "test001",
+    "balance": "123456.50",
+    "transferRecords": [
     {
-      "transactionId": 1000200030004002,
-      "time": 20180121093340,
-      "transactionAccount": "4444555566667777",
-      "amount": 2000
+      "transferId": 1000200030004000,
+      "time": 20180101093340,
+      "transferAccount": "1111222233334444",
+      "amount": 1300.50
+    }, {
+      "transferId": 1000200030004021,
+      "time": 20180211191237,
+      "transferAccount": "2222333344445555",
+      "amount": -800.50
+    }, {
+      "transferId": 1000200030004102,
+      "time": 20180226235530,
+      "transferAccount": "3333444455556666",
+      "amount": 100.00
     }]
-  }]
+  }, {
+    "id": 1000002,
+    "username": "test002",
+    "balance": "654321.80",
+    "transferRecords": [
+    {
+      "transferId": 1000200030004090,
+      "time": 20180121093340,
+      "transferAccount": "4444555566667777",
+      "amount": 2000.00
+    }]
+  }
+  ]
 }
