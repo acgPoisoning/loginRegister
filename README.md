@@ -1,7 +1,7 @@
 
 # 用户中心
 
-> A Vue.js project
+> a project bases on vue.js
 
 ### 进度
 
